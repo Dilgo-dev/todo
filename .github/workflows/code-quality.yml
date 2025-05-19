@@ -2,13 +2,13 @@ name: Code Quality Check
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, dev ]
     paths:
       - 'backend/**'
       - 'frontend/**'
       - '.github/workflows/code-quality.yml'
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main, dev ]
     paths:
       - 'backend/**'
       - 'frontend/**'
