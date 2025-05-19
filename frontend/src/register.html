@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Todo - Register</title>
+        <script src="scripts/auth/register.js" type="module" defer></script>
+    </head>
+    <body>
+        <h1>🗿 Register</h1>
+        <p>Create an account to get started</p>
+        <p id="error" role="alert" aria-live="polite"></p>
+        <form>
+            <div>
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    required
+                    placeholder="Email"
+                    autocomplete="email"
+                />
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    required
+                    placeholder="Password"
+                    minlength="8"
+                    autocomplete="new-password"
+                />
+            </div>
+            <div>
+                <label for="password_confirm">Confirm Password</label>
+                <input
+                    type="password"
+                    name="password_confirm"
+                    id="password_confirm"
+                    required
+                    placeholder="Confirm Password"
+                    minlength="8"
+                    autocomplete="new-password"
+                />
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="/login">Login</a></p>
+        <p>Or <a href="/">go back</a></p>
+    </body>
+</html>
