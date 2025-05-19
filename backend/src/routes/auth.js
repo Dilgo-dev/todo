@@ -46,14 +46,23 @@ router.post('/register', async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    if (!email || !email.includes('@') || !password || password.length < 8) {
+      return res.status(400).json({ message: 'Email and password are required' });
+    }
+
     const hashedPassword = await hash(password, 10);
 
     const user = await prisma.user.create({
       data: { email, password: hashedPassword },
     });
 
-    res.status(201).json(user);
+    const { password: _, ...userWithoutPassword } = user;
+
+    res.status(201).json(userWithoutPassword);
   } catch (error) {
+    if (error.code === 'P2002' && error.meta?.target?.includes('email')) {
+      return res.status(409).json({ message: 'Email already exists' });
+    }
     res.status(500).json({ message: error.message });
   }
 });
