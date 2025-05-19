@@ -5,8 +5,8 @@
     "scripts": {
       "format": "prettier --write \"**/*.{js,html,css}\"",
       "format:check": "prettier --check \"**/*.{js,html,css}\"",
-      "lint": "eslint scripts/**/*.js",
-      "lint:fix": "eslint scripts/**/*.js --fix"
+      "lint": "eslint src/scripts/**/*.js",
+      "lint:fix": "eslint src/scripts/**/*.js --fix"
     },
     "devDependencies": {
       "@eslint/js": "^9.27.0",
