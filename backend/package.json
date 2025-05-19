@@ -7,7 +7,9 @@
     "start": "nodemon src/server.mjs",
     "dev": "nodemon src/server.mjs",
     "format": "prettier --write \"src/**/*.{js,mjs}\"",
-    "format:check": "prettier --check \"src/**/*.{js,mjs}\""
+    "format:check": "prettier --check \"src/**/*.{js,mjs}\"",
+    "lint": "eslint src/**/*.{js,mjs}",
+    "lint:fix": "eslint src/**/*.{js,mjs} --fix"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +23,10 @@
     "typeorm": "^0.3.24"
   },
   "devDependencies": {
+    "@eslint/js": "^9.27.0",
+    "@stylistic/eslint-plugin": "^4.2.0",
+    "eslint": "^9.27.0",
+    "globals": "^16.1.0",
     "nodemon": "^3.1.10",
     "prettier": "^3.5.3"
   }
