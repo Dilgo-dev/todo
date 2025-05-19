@@ -22,7 +22,7 @@ router.get('/me', async (req, res) => {
       return res.status(401).json({ message: 'Unauthorized' });
     }
 
-    const { password, ...userWithoutPassword } = user;
+    const { password: _, ...userWithoutPassword } = user;
 
     res.status(200).json(userWithoutPassword);
   } catch (err) {
@@ -46,16 +46,14 @@ router.post('/register', async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email || !emailRegex.test(email)) {
       return res.status(400).json({ message: 'Valid email is required' });
     }
-    
-    // Validate password strength
+
     if (!password || password.length < 8) {
       return res.status(400).json({ message: 'Password must be at least 8 characters' });
-     }
+    }
 
     const hashedPassword = await hash(password, 10);
 

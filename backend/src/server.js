@@ -21,10 +21,10 @@ app.use((err, _req, res, _next) => {
   const statusCode = err.statusCode || 500;
   const message = statusCode === 500 ? 'Internal server error' : err.message;
   console.error(`${statusCode} - ${message} - ${_req.originalUrl} - ${_req.method} - ${_req.ip}`);
-  res.status(statusCode).json({ 
-    status: 'error', 
+  res.status(statusCode).json({
+    status: 'error',
     message,
-    code: err.code || 'INTERNAL_ERROR' 
+    code: err.code || 'INTERNAL_ERROR',
   });
 });
 
