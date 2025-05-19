@@ -8,8 +8,9 @@ import renderTodos from "./renderTodo.js";
  * @returns {void}
  */
 const addTodo = (todo) => {
+    if (!todo) return;
     const todos = getTodos();
-    todos.push({ text: todo, completed: false });
+    todos.push({ id: todos.length + 1, text: todo, completed: false });
     saveTodos(todos);
     renderTodos();
 };
