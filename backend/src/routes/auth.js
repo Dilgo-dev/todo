@@ -18,9 +18,13 @@ router.get('/me', async (req, res) => {
       where: { id: decoded.userId },
     });
 
-    delete user.password;
+    if (!user) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
 
-    res.status(200).json(user);
+    const { password, ...userWithoutPassword } = user;
+
+    res.status(200).json(userWithoutPassword);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
