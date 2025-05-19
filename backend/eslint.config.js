@@ -36,7 +36,7 @@ export default defineConfig([
       "arrow-body-style": ["error", "as-needed"],
 
       "stylistic/semi": ["error", "always"],
-      "stylistic/quotes": ["error", "double"],
+      "stylistic/quotes": ["error", "single"],
       "stylistic/comma-dangle": ["error", "only-multiline"],
       "stylistic/max-len": ["error", { code: 100, ignoreComments: true, ignoreStrings: true, ignoreTemplateLiterals: true }],
       "stylistic/indent": ["error", 2],
