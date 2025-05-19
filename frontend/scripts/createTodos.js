@@ -1,4 +1,4 @@
-import { getTodos, saveTodos } from "./saveTodos.js";
+import { getTodos, saveTodos } from './saveTodos.js';
 
 /**
  * Create a todo
@@ -10,15 +10,15 @@ import { getTodos, saveTodos } from "./saveTodos.js";
  * @returns {HTMLElement} - The todo element
  */
 const createTodo = ({ id, text, completed }) => {
-    const todo = document.createElement("div");
-    const checkbox = document.createElement("input");
+    const todo = document.createElement('div');
+    const checkbox = document.createElement('input');
 
-    checkbox.type = "checkbox";
+    checkbox.type = 'checkbox';
     checkbox.checked = completed;
     todo.textContent = text;
     todo.appendChild(checkbox);
 
-    checkbox.addEventListener("change", () => {
+    checkbox.addEventListener('change', () => {
         const todos = getTodos();
         const todoIndex = todos.findIndex(todo => todo.id === id);
         todos[todoIndex].completed = checkbox.checked;

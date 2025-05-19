@@ -5,7 +5,7 @@
  * @returns {void}
  */
 export const saveTodos = todos => {
-    localStorage.setItem("todos", JSON.stringify(todos));
+    localStorage.setItem('todos', JSON.stringify(todos));
 };
 
 /**
@@ -13,4 +13,4 @@ export const saveTodos = todos => {
  * @description Get the todos from the localStorage
  * @returns {Array} - The todos
  */
-export const getTodos = () => JSON.parse(localStorage.getItem("todos")) || [];
+export const getTodos = () => JSON.parse(localStorage.getItem('todos')) || [];

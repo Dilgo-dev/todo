@@ -1,6 +1,6 @@
-import createTodo from "./createTodos.js";
-import { getTodos } from "./saveTodos.js";
-import { input } from "./document.js";
+import createTodo from './createTodos.js';
+import { getTodos } from './saveTodos.js';
+import { input } from './document.js';
 
 /**
  * Render the todos
@@ -10,10 +10,10 @@ import { input } from "./document.js";
 const renderTodos = () => {
     const todos = getTodos();
 
-    const todosElement = document.querySelector("#todos");
+    const todosElement = document.querySelector('#todos');
 
-    input.value = "";
-    todosElement.innerHTML = "";
+    input.value = '';
+    todosElement.innerHTML = '';
 
     todos.forEach(todo => {
         const todoElement = createTodo(todo);

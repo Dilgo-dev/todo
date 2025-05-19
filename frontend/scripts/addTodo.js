@@ -1,5 +1,5 @@
-import { getTodos, saveTodos } from "./saveTodos.js";
-import renderTodos from "./renderTodo.js";
+import { getTodos, saveTodos } from './saveTodos.js';
+import renderTodos from './renderTodo.js';
 
 /**
  * Add a todo
