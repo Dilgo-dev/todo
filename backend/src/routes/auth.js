@@ -26,6 +26,9 @@ router.get('/me', async (req, res) => {
 
     res.status(200).json(userWithoutPassword);
   } catch (err) {
+    if (err instanceof jwt.JsonWebTokenError) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
     res.status(500).json({ message: err.message });
   }
 });
