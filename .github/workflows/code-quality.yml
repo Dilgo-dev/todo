@@ -1,0 +1,39 @@
+name: Backend Code Quality Check
+
+on:
+  push:
+    branches: [ main, dev ]
+    paths:
+      - 'backend/**'
+  pull_request:
+    branches: [ main, dev ]
+    paths:
+      - 'backend/**'
+
+jobs:
+  lint:
+    name: Lint and Format Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: 'backend/package-lock.json'
+      
+      - name: Install dependencies
+        working-directory: ./backend
+        run: npm ci
+      
+      - name: Check Prettier formatting
+        working-directory: ./backend
+        run: npm run format:check
+      
+      - name: Run ESLint
+        working-directory: ./backend
+        run: npm run lint
