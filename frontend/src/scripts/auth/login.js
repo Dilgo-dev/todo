@@ -1,11 +1,10 @@
 async function login(event) {
     event.preventDefault();
-    
+
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
     if (!email || !password) {
-        alert('Please enter an email and password');
         return;
     }
 
@@ -17,12 +16,8 @@ async function login(event) {
         },
     });
 
-    const data = await response.json();
-
     if (response.ok) {
         window.location.href = '/';
-    } else {
-        alert('Invalid credentials');
     }
 }
 
