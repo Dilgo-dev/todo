@@ -4,7 +4,7 @@
  * @param {Array} todos - The todos
  * @returns {void}
  */
-export const saveTodos = (todos) => {
+export const saveTodos = todos => {
     localStorage.setItem("todos", JSON.stringify(todos));
 };
 

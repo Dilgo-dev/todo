@@ -6,7 +6,7 @@ button.addEventListener("click", () => {
     addTodo(input.value);
 });
 
-input.addEventListener("keypress", (e) => {
+input.addEventListener("keypress", e => {
     if (e.key === "Enter") {
         addTodo(input.value);
     }

@@ -20,7 +20,7 @@ const createTodo = ({ id, text, completed }) => {
 
     checkbox.addEventListener("change", () => {
         const todos = getTodos();
-        const todoIndex = todos.findIndex((todo) => todo.id === id);
+        const todoIndex = todos.findIndex(todo => todo.id === id);
         todos[todoIndex].completed = checkbox.checked;
         saveTodos(todos);
     });

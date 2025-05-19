@@ -15,7 +15,7 @@ const renderTodos = () => {
     input.value = "";
     todosElement.innerHTML = "";
 
-    todos.forEach((todo) => {
+    todos.forEach(todo => {
         const todoElement = createTodo(todo);
         todosElement.appendChild(todoElement);
     });
