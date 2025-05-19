@@ -9,7 +9,7 @@ import renderTodos from "./renderTodo.mjs";
  */
 const addTodo = (todo) => {
     const todos = getTodos() || [];
-    todos.push(todo);
+    todos.push({ text: todo, completed: false });
     saveTodos(todos);
     renderTodos();
 };
