@@ -18,10 +18,17 @@ router.get('/me', async (req, res) => {
       where: { id: decoded.userId },
     });
 
-    delete user.password;
+    if (!user) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
 
-    res.status(200).json(user);
+    const { password: _, ...userWithoutPassword } = user;
+
+    res.status(200).json(userWithoutPassword);
   } catch (err) {
+    if (err instanceof jwt.JsonWebTokenError) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
     res.status(500).json({ message: err.message });
   }
 });
@@ -39,14 +46,28 @@ router.post('/register', async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      return res.status(400).json({ message: 'Valid email is required' });
+    }
+
+    if (!password || password.length < 8) {
+      return res.status(400).json({ message: 'Password must be at least 8 characters' });
+    }
+
     const hashedPassword = await hash(password, 10);
 
     const user = await prisma.user.create({
       data: { email, password: hashedPassword },
     });
 
-    res.status(201).json(user);
+    const { password: _, ...userWithoutPassword } = user;
+
+    res.status(201).json(userWithoutPassword);
   } catch (error) {
+    if (error.code === 'P2002' && error.meta?.target?.includes('email')) {
+      return res.status(409).json({ message: 'Email already exists' });
+    }
     res.status(500).json({ message: error.message });
   }
 });
@@ -54,6 +75,10 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Email and password are required' });
+    }
 
     const user = await prisma.user.findUnique({
       where: { email },
@@ -69,12 +94,15 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+      expiresIn: '30d',
+    });
 
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
+      maxAge: 1000 * 60 * 60 * 24 * 30,
+      sameSite: 'lax',
     });
 
     res.status(200).json({ message: 'Login successful' });
