@@ -12,4 +12,7 @@ app.get("/api", (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`🐶 Server is running on port http://localhost:${PORT}`);
+    if (process.env.NODE_ENV === "development") {
+        console.log(`🔧 Mode développement activé`);
+    }
 });
