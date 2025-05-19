@@ -33,7 +33,7 @@ router.delete('/', (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
- });
+});
 
 router.post('/register', async (req, res) => {
   try {

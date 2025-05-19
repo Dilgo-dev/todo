@@ -1,35 +1,35 @@
-const changeError = (message) => {
+const changeError = message => {
     const error = document.getElementById('error');
     error.textContent = message;
     setTimeout(() => {
         error.textContent = '';
     }, 3000);
-}
- 
+};
+
 export default async function register(event) {
-     event.preventDefault();
+    event.preventDefault();
     const submitButton = document.querySelector('button[type="submit"]');
     submitButton.disabled = true;
     submitButton.textContent = 'Registering...';
- 
-     const email = document.getElementById('email').value;
-     const password = document.getElementById('password').value;
-     const password_confirm = document.getElementById('password_confirm').value;
- 
-     if (password !== password_confirm) {
-         changeError('Passwords do not match');
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const password_confirm = document.getElementById('password_confirm').value;
+
+    if (password !== password_confirm) {
+        changeError('Passwords do not match');
         submitButton.disabled = false;
         submitButton.textContent = 'Register';
-         return;
-     }
-    
+        return;
+    }
+
     if (password.length < 8) {
         changeError('Password must be at least 8 characters long');
         submitButton.disabled = false;
         submitButton.textContent = 'Register';
         return;
     }
- 
+
     try {
         const response = await fetch('/api/auth/register', {
             method: 'POST',
@@ -38,7 +38,7 @@ export default async function register(event) {
                 'Content-Type': 'application/json',
             },
         });
-        
+
         if (response.ok) {
             window.location.href = '/login.html';
         } else {
@@ -46,6 +46,7 @@ export default async function register(event) {
             changeError(errorData.message || 'Failed to register');
         }
     } catch (error) {
+        console.error('Register error:', error);
         changeError('Network error. Please try again.');
     } finally {
         submitButton.disabled = false;

@@ -4,7 +4,6 @@ import { input, button } from './document.js';
 import me from './auth/me.js';
 import logout from './auth/logout.js';
 
-
 button.addEventListener('click', () => {
     addTodo(input.value);
 });

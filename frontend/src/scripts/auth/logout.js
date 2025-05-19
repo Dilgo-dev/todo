@@ -11,5 +11,5 @@ export default async function logout() {
         }
     } catch (error) {
         console.error('Logout error:', error);
-     }
- }
+    }
+}
