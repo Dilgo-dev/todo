@@ -1,6 +1,6 @@
-import createTodo from "./createTodos.mjs";
-import { getTodos } from "./saveTodos.mjs";
-import { input } from "./document.mjs";
+import createTodo from "./createTodos.js";
+import { getTodos } from "./saveTodos.js";
+import { input } from "./document.js";
 
 /**
  * Render the todos

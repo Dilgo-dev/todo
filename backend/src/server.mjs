@@ -6,10 +6,13 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
     res.send("Hello World");
 });
 
 app.listen(PORT, () => {
     console.log(`🐶 Server is running on port http://localhost:${PORT}`);
+    if (process.env.NODE_ENV === "development") {
+        console.log(`🔧 Mode développement activé`);
+    }
 });

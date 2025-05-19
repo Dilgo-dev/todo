@@ -1,4 +1,4 @@
-import { getTodos, saveTodos } from "./saveTodos.mjs";
+import { getTodos, saveTodos } from "./saveTodos.js";
 
 /**
  * Create a todo

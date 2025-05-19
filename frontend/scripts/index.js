@@ -1,6 +1,6 @@
-import addTodo from "./addTodo.mjs";
-import renderTodos from "./renderTodo.mjs";
-import { input, button } from "./document.mjs";
+import addTodo from "./addTodo.js";
+import renderTodos from "./renderTodo.js";
+import { input, button } from "./document.js";
 
 button.addEventListener("click", () => {
     addTodo(input.value);
