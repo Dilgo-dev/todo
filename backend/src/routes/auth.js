@@ -46,9 +46,16 @@ router.post('/register', async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    if (!email || !email.includes('@') || !password || password.length < 8) {
-      return res.status(400).json({ message: 'Email and password are required' });
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      return res.status(400).json({ message: 'Valid email is required' });
     }
+    
+    // Validate password strength
+    if (!password || password.length < 8) {
+      return res.status(400).json({ message: 'Password must be at least 8 characters' });
+     }
 
     const hashedPassword = await hash(password, 10);
 
