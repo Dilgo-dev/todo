@@ -18,7 +18,7 @@ const createTodo = ({ text, completed }) => {
     todo.appendChild(checkbox);
 
     checkbox.addEventListener("change", () => {
-        const todos = getTodos() || [];
+        const todos = getTodos();
         const todoIndex = todos.findIndex((todo) => todo.text === text);
         todos[todoIndex].completed = checkbox.checked;
         saveTodos(todos);

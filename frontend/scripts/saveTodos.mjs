@@ -13,6 +13,4 @@ export const saveTodos = (todos) => {
  * @description Get the todos from the localStorage
  * @returns {Array} - The todos
  */
-export const getTodos = () => {
-    return JSON.parse(localStorage.getItem("todos"));
-};
+export const getTodos = () => JSON.parse(localStorage.getItem("todos")) || [];

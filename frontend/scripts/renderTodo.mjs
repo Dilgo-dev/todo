@@ -8,7 +8,7 @@ import { input } from "./document.mjs";
  * @returns {void}
  */
 const renderTodos = () => {
-    const todos = getTodos() || [];
+    const todos = getTodos();
 
     const todosElement = document.querySelector("#todos");
 
