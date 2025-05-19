@@ -1,12 +1,14 @@
 import createTodo from "./createTodos.mjs";
+import { getTodos, saveTodos } from "./saveTodos.mjs";
 
 const input = document.querySelector("input");
 const button = document.querySelector("button");
 
-const todos = [];
+const todos = getTodos() || [];
 
 const addTodo = (todo) => {
     todos.push(todo);
+    saveTodos(todos);
     renderTodos();
 };
 
@@ -29,3 +31,5 @@ input.addEventListener("keypress", (e) => {
         addTodo(input.value);
     }
 });
+
+renderTodos();
