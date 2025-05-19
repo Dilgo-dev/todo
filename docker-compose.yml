@@ -19,7 +19,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./frontend:/usr/share/nginx/html
+      - ./frontend/src:/usr/share/nginx/html
     depends_on:
       - backend
     restart: unless-stopped
