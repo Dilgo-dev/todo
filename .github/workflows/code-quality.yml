@@ -1,18 +1,22 @@
-name: Backend Code Quality Check
+name: Code Quality Check
 
 on:
   push:
-    branches: [ main, dev ]
+    branches: [ main, develop ]
     paths:
       - 'backend/**'
+      - 'frontend/**'
+      - '.github/workflows/code-quality.yml'
   pull_request:
-    branches: [ main, dev ]
+    branches: [ main, develop ]
     paths:
       - 'backend/**'
+      - 'frontend/**'
+      - '.github/workflows/code-quality.yml'
 
 jobs:
-  lint:
-    name: Lint and Format Check
+  backend-quality:
+    name: Backend Lint and Format Check
     runs-on: ubuntu-latest
     
     steps:
@@ -36,4 +40,32 @@ jobs:
       
       - name: Run ESLint
         working-directory: ./backend
+        run: npm run lint
+
+  frontend-quality:
+    name: Frontend Lint and Format Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: 'frontend/package-lock.json'
+      
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: |
+          npm install
+      
+      - name: Check Prettier formatting
+        working-directory: ./frontend
+        run: npm run format:check
+      
+      - name: Run ESLint
+        working-directory: ./frontend
         run: npm run lint
